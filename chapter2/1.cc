@@ -75,11 +75,7 @@ class Solution
                         }
                     }
                 }
-            list.showList();
-            cout<<it->data<<endl;
-            if(it!= nullptr){
                 it = it->next;
-            }
            
             }
         }
@@ -92,10 +88,23 @@ int main(void)
     vector<int> test2 = {1,1,1,1,1,1,1};
     vector<int> test3 = {1,2,1,2,2,2,3,3,4,2,1};
     Linkedlist *sample = new Linkedlist;
+    cout<<"Solution 1 using hastable:"<<endl<<"Initialzing:";
     sample->init(test1);
+    sample->init(test2);
+    sample->init(test3);
+    sample->showList();
+    Solution::solution2_1_1(*sample);
+    cout<<"After deleting: ";
+    sample->showList();
+    cout<<"Solution 2 with no buffer :"<<endl<<"Initialzing:";
+    sample->init(test1);
+    sample->init(test2);
+    sample->init(test3);
     sample->showList();
     Solution::solution2_1_2(*sample);
+    cout<<"After deleting: ";
     sample->showList();
+
     delete sample;
     return 0;
 }
