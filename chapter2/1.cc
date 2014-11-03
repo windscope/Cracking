@@ -38,7 +38,7 @@ class Solution
         static void solution2_1_2(Linkedlist &list)
         {
             Node *it = list.head;
-            while(it->next != nullptr)
+            while(it!= nullptr)
             {
                 Node *deletor_it = it->next;
                 Node *deletor_itPrev = deletor_it;
@@ -75,6 +75,12 @@ class Solution
                         }
                     }
                 }
+            list.showList();
+            cout<<it->data<<endl;
+            if(it!= nullptr){
+                it = it->next;
+            }
+           
             }
         }
 };
@@ -88,7 +94,7 @@ int main(void)
     Linkedlist *sample = new Linkedlist;
     sample->init(test1);
     sample->showList();
-    Solution::solution2_1_1(*sample);
+    Solution::solution2_1_2(*sample);
     sample->showList();
     delete sample;
     return 0;
