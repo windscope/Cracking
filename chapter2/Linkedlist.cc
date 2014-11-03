@@ -67,7 +67,7 @@ void Linkedlist::init(vector<int> &dataList)
        insert(dataList[i]); 
     }
 }
-
+/* Add for testing
 int main(void)
 {
     Linkedlist try_list;
@@ -80,3 +80,4 @@ int main(void)
     try_list.showList();
     return 0;
 }
+*/
