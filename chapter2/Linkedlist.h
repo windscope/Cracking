@@ -18,6 +18,7 @@ class Linkedlist
         void createCycle();
         void showList();
         void init(vector<int> &dataList);
+    
     private:
         Node *tail; // Add for O(1) insertion
 };
