@@ -2,10 +2,12 @@ CFLAG=-ldl -Wall -std=c++11 -o
 SOURCE=Linkedlist.cc
 PROBLEM1=1.cc
 PROBLEM2=2.cc
+PROBLEM3=3.cc
 PROBLEMF=fabornaci.cc
 OUT1=1.exe
 OUTF=fabornaci.exe
 OUT2=2.exe
+OUT3=3.exe
 CC=g++
 all: p1
 
@@ -15,5 +17,7 @@ pf: fabornaci.cc
 	${CC} ${PROBLEMF} ${SOURCE} ${CFLAG} ${OUTF}
 p2: 2.cc
 	${CC} ${PROBLEM2} ${SOURCE} ${CFLAG} ${OUT2}
+p3: 3.cc
+	${CC} ${PROBLEM3} ${SOURCE} ${CFLAG} ${OUT3}
 clean:
 	rm -rf *.o *~ *.exe *.out
