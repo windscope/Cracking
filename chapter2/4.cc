@@ -57,7 +57,7 @@ class Solution
                 }
                 else overflow = 0;
                 resultList.insert(sum);
-                if(count[0]==count[1]&&it[0]->next ==nullptr&&it[1]->next == nullptr)//if list1 length == list2 length, and overflowed
+                if(overflow&&count[0]==count[1]&&it[0]==nullptr&&it[1]== nullptr)//if list1 length == list2 length, and overflowed
                     resultList.insert(overflow);
              }
         resultList.showList();
@@ -68,14 +68,14 @@ class Solution
 int main()
 {
     vector<int> test1 = {5,5,5};
-    vector<int> test2 = {4,4,4};
+    vector<int> test2 = {4,4,4,2};
     vector<int> test3 = {6,9,7};
     Linkedlist list1,list2,list3;
     list1.init(test1);
     list2.init(test2);
     list3.init(test3);
     list1.showList();
-    list2.showList();
+    list3.showList();
     cout<<"Add these two list"<<endl;
     Solution::sumList(list1,list2);
     return 0;
