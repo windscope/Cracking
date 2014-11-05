@@ -19,7 +19,7 @@ Linkedlist::~Linkedlist()
     }
     head = nullptr;
     tail = head;
-    cout<<"We now delete the linkedlist"<<endl;
+    //cout<<"We now delete the linkedlist"<<endl;
 }
 
 void Linkedlist::insert(int data)

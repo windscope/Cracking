@@ -46,9 +46,7 @@ int main(void)
     Node *result2 = Solution::return_head_has(list);
     assert(result1==list.head);
     assert(result2==list.head);
-    cout<<"You win!"<<endl;
-    cout<<"Two racing iterator give us the Node["<<result1->data<<"]\n";
-    cout<<"Hashtable method give us the Node["<<result2->data<<"]\n";
+    cout<<"Pass"<<endl;
     list.breakCycle();
     return 0;
 }
