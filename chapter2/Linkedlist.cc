@@ -45,6 +45,11 @@ void Linkedlist::createCycle()
     tail->next = head;
 }
 
+void Linkedlist::breakCycle()
+{
+    tail->next = nullptr;
+}
+
 void Linkedlist::showList()
 {
     Node *dispNode = head;
