@@ -14,7 +14,7 @@ class Solution
 {
     public:
         static void sumList(Linkedlist &list1,Linkedlist &list2)
-        {
+        {// To lazy to overwrite an assignment operator=,so I will print out the linked list 
             if(list1.head ==nullptr &&list2.head == nullptr) 
             {
                 cout<<"Error"<<endl;
