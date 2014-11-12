@@ -46,7 +46,7 @@ int Stack3:: top(int stackIdx)
 {
     if(curPtr[stackIdx] == -1) 
     {
-        cout<<"Not thing to peak\n";
+        cout<<"No thing to peak\n";
         return -1;
     }
     int topIdx = curPtr[stackIdx];
