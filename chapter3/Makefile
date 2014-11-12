@@ -27,4 +27,4 @@ p5: 5.cc
 p6: 6.cc
 	${CC} ${PROBLEM6} ${SOURCE} ${CFLAG} ${OUT6}
 clean:
-	rm -rf *.o *~ *.exe *.out
+	rm -rf *.o *~ *.exe *.out *.exe.dSYM
