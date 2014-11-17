@@ -12,6 +12,9 @@ Daily mistake
 - 11.16
     1. Call array forget to use [] to access. 
     2. stack does not have front but it has top. 
-
+    3. priority_queue is inside of queue library
+    4. priority_queue have top not front
+    5. forget using namespace srd;
+    6. Forget to initialize the for loop's i
 Catgoried Mistake
 ---
