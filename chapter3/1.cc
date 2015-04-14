@@ -55,8 +55,13 @@ int Stack3:: top(int stackIdx)
 
 int Stack3::push(int value, int stackIdx)
 {
-    while(buf[curIdx].prevIdx != -2 && curIdx < size)// current node of buffer has already been used
-        curIdx ++;
+    if(curIdx == -1){
+        curIdx++;
+    }
+    else{
+        while(buf[curIdx].prevIdx != -2 && curIdx < size)// current node of buffer has already been used
+            curIdx ++;
+    }
     if(curIdx+1 == size)// error handling
     {
         cout<<"Cannot grow, already reach the boundary of memory address"<<endl;

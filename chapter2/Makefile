@@ -1,4 +1,4 @@
-CFLAG=-ldl -g -Wall -std=c++11 -o
+CFLAG=-ldl -g -Wall -Werror -O1 -std=c++11 -o
 SOURCE=Linkedlist.cc
 PROBLEM1=1.cc
 PROBLEM2=2.cc

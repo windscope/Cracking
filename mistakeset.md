@@ -15,6 +15,8 @@ Daily mistake
     3. priority_queue is inside of queue library
     4. priority_queue have top not front
     5. forget using namespace srd;
-    6. Forget to initialize the for loop's i
+    6. Forget to initialize the for loop's i;
+- 12.25
+    1. forget to pop the stack:solution:after top, always pop;
 Catgoried Mistake
 ---

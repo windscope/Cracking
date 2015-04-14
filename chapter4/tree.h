@@ -1,21 +1,21 @@
-Class Node{
-    public:
-        Node(){
-            _left = nullptr;
-            _right  = nullptr;
-            _key = -1;
-        }
-        void setKey(int value){ _key = value; }
-        Node *left() {return _left;}
-        Node *right() {return _right;}
-        int key(){return _key;}
-        void setLeft(Node *left){
-            _left = left;
-        } 
-        void setRight(Node *right){
-            _right = right;
-        }
+#ifndef _TREE_H_
+#define _TREE_H_
+#include <iostream>
+#include <cstdlib>
+#include <stack>
 
+using namespace std;
+
+class Node{
+    public:
+        Node();
+        Node(int key);
+        void setKey(int key);
+        Node *left();
+        Node *right();
+        int key();
+        void setLeft(Node *left);
+        void setRight(Node *right);
     private:
         int _key;
         Node *_left;
@@ -31,13 +31,14 @@ class Tree{
     public:
         Tree();
         ~Tree();
-        Node *root{return _root;}
+        Node *root(){return _root;}
         void addNode(int key);
-        void preOder(Node* leaf);
+        void preOrder(Node* leaf);
         void inOrder(Node *leaf);
         void postOrder(Node *leaf);
         void iterPreOrder(Node *leaf);
         void iterInOrder(Node *leaf);
-        void iterPostOder(Node *leaf);
+        void iterPostOrder(Node *leaf);
 
-}
+};
+#endif
