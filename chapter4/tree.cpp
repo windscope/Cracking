@@ -1,21 +1,5 @@
 #include "tree.h"
 
-using namespace std;
-
-Node::Node(){}
-
-Node::Node(int key){}
-
-Node::setKey(int key){}
-
-Node *Node::left(){}
-
-Node *Node::right(){}
-
-void *Node::setLeft(){}
-
-void *Node::setRight(){}
-
 Tree::Tree(){}
 
 void Tree::freeNode(Node *leaf){}
