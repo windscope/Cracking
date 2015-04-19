@@ -1,159 +1,80 @@
+// Author windscope <windcope@gmail.com>
+
 #include "tree.h"
 
-using namespace std;
+#include <iostream>
 
-Node::Node(){
-    _left = nullptr;
-    _right  = nullptr;
-    _key = -1;
+namespace crack {
+
+void Tree::free_node(Node *leaf) {
+    if (leaf->has_left()) {
+        free_node(leaf->mutable_left());
+    }
+    if (leaf->has_right()) {
+        free_node(leaf->mutable_right());
+    }
+    delete leaf;
 }
 
-Node::Node(int key){
-    _left = nullptr;
-    _right = nullptr;
-    _key = key;
+Tree::~Tree() {
+    free_node(_root);
 }
 
-void Node::setKey(int key){
-    _key = key;
-}
-
-Node *Node::left(){
-    return _left;
-}
-
-Node *Node::right(){
-    return _right;
-}
-
-int Node::key(){
-    return _key;
-}
-
-void Node::setLeft(Node *left){
-        _left = left;
-}
-
-void Node::setRight(Node *right){
-    _right = right;
-}
-
-
-Tree::Tree(){
-    _root = nullptr;
-}
-
-Tree:: ~Tree(){
-    freeNode(_root);
-}
-
-void Tree::freeNode(Node *leaf){
-    if(leaf!=nullptr){
-        freeNode(leaf->left());
-        freeNode(leaf->right());
-        delete leaf;
+void Tree::add_node(int value) {
+    // if root
+    if (nullptr == _root ) {
+        _root = new Node(value);
+    } else {
+        add_node(value, _root);
     }
 }
 
-void Tree::addNode(int key){
-    if(_root == NULL){
-        cout<<"Adding root node with key: "<<key<<endl;
-        Node *root  = new Node(key);
-        _root = root;
-    }
-    else{
-        cout<<"Adding the leaf node with key: "<<key<<endl;
-        addNode(key, _root);
-    }
-}
-
-void Tree::addNode(int key, Node *leaf){
-    if(key <= leaf->key()){
-        if(leaf->left() != nullptr){
-            addNode(key, leaf->left());
+void Tree::add_node(int value, Node* leaf) {
+    if (value < leaf->value()) {
+        if (leaf->has_left()) {
+            add_node(value, leaf->mutable_left());
+        } else {
+            Node* left = new Node(value);
+            leaf->set_left(left);
         }
-        else{
-            Node *left = new Node(key);
-            leaf->setLeft(left);
-        }
-    }
-    else{
-        if(leaf->right() != nullptr){
-            addNode(key, leaf->right());
-        }
-        else{
-            Node *right = new Node(key);
-            leaf->setRight(right);
+    } else {
+        if (leaf->has_right()) {
+            add_node(value, leaf->mutable_right());
+        } else {
+            Node* right  = new Node(value);
+            leaf->set_right(right);
         }
     }
 }
 
-
-void Tree::preOrder(Node *leaf){
-    if(leaf != nullptr){
-        cout<<leaf->key()<<" ";
-        preOrder(leaf->left());
-        preOrder(leaf->right());
+void Tree::insert(std::vector<int> data) {
+    for (auto it = data.begin(); it != data.end(); ++it) {
+        add_node(*it);
     }
 }
 
-void Tree::postOrder(Node *leaf){
-    if(leaf != nullptr){
-        postOrder(leaf->left());
-        postOrder(leaf->right());
-        cout<<leaf->key()<<" ";
+void Tree::post_order(const Node* leaf) const {
+    if (nullptr != leaf) {
+        post_order(leaf->left());
+        post_order(leaf->right());
+        std::cout << leaf->value() << std::endl;
     }
 }
 
-void Tree::inOrder(Node *leaf){
-    if(leaf != nullptr){
-        inOrder(leaf->left());
-        cout<<leaf->key()<<" ";
-        inOrder(leaf->right());
+void Tree::in_order(const Node* leaf) const {
+    if (nullptr != leaf) {
+        in_order(leaf->left());
+        std::cout << leaf->value() << std::endl;
+        in_order(leaf->right());
     }
 }
 
-void Tree::iterPreOrder(Node *leaf){
-    stack<Node *> parent;// parent stack that hold the parent node for future reference
-   while(!parent.empty() || leaf != nullptr){
-        if(leaf != nullptr){
-            cout<<leaf->key()<<" "; 
-            if(leaf->right() != nullptr)
-                parent.push(leaf->right());
-            leaf = leaf->left();
-        }
-        else{
-            leaf = parent.top();
-            parent.pop();
-        }
+void Tree::pre_order(const Node* leaf) const {
+    if (nullptr != leaf) {
+        std::cout << leaf->value() << std::endl;
+        pre_order(leaf->left());
+        pre_order(leaf->right());
     }
 }
 
-void Tree::iterInOrder(Node *leaf){
-    stack<Node *>parent;
-    while(!parent.empty() || leaf != nullptr){
-        if(leaf != nullptr){
-            parent.push(leaf);
-            leaf = leaf->left();
-
-        }
-        else{
-            leaf = parent.top();
-            parent.pop();
-            cout<<leaf->key()<<" ";
-            leaf = leaf->right();
-        }
-    }
-}
-/*
-void Tree::iterPostOrder(Node *leaf){
-    stack<Node *>parent;
-    Node *nodeVisited;
-    while(!parent.empty() || leaf != nullptr){
-        if(leaf != nullptr){
-            
-        }
-    }
-}
-*/
-
+} // namespace crack
