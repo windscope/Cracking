@@ -4,6 +4,7 @@ Rercording the mistakes I had every day.
 
 Daily mistake
 ---
+###2014
 - 11.12
     1. Use the data structure type instead of the object name.
     2. Typo
@@ -18,5 +19,11 @@ Daily mistake
     6. Forget to initialize the for loop's i;
 - 12.25
     1. forget to pop the stack:solution:after top, always pop;
+
+###2015
+
+- 4.16
+    1. const function must only call const function.
+    2. Must check the existance of an object before trying to access it.
 Catgoried Mistake
 ---
