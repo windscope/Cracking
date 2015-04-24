@@ -7,13 +7,11 @@
 namespace crack {
 
 void Tree::free_node(Node *leaf) {
-    if (leaf->has_left()) {
+    if (leaf != nullptr) {
         free_node(leaf->mutable_left());
-    }
-    if (leaf->has_right()) {
         free_node(leaf->mutable_right());
+        delete leaf;
     }
-    delete leaf;
 }
 
 Tree::~Tree() {
