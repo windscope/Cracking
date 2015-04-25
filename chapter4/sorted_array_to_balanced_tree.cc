@@ -16,9 +16,14 @@ class Solution2 {
 public:
     explicit Solution2() : _tree() {}
     virtual ~Solution2() {}
-    void reset() {
-        Tree _tree();
-     }
+    void create_balanced_tree(int* sorted_array, int small, int large) {
+        if (small > large)
+            return;
+        int mid = (small + large)/2;
+        _tree.add_node(sorted_array[mid]);
+        create_balanced_tree(sorted_array, small, mid - 1);
+        create_balanced_tree(sorted_array, mid + 1, large);
+    }
     void create_balanced_tree(int* sorted_array, int size) {
         if (size == 0) {
             return;
@@ -96,19 +101,19 @@ private:
 int main(void) {
     int data[9] = {1,2,3,4,5,6,7,8,9};
     crack::Solution2 s;
-    s.create_balanced_tree(data, 9);
+    s.create_balanced_tree(data, 0, 8);
     assert(s.is_balanced());
     crack::Solution2 s2;
     int data2[8] = {2, 4, 6, 8, 10, 12, 13, 15};
-    s2.create_balanced_tree(data2, 8);
+    s2.create_balanced_tree(data2, 0, 7);
     assert(s2.is_balanced());
     int data3[1] = {5};
     crack::Solution2 s3;
-    s3.create_balanced_tree(data3, 1);
+    s3.create_balanced_tree(data3, 0, 0);
     assert(s3.is_balanced());
     int data4[2] = {0,5};
     crack::Solution2 s4;
-    s3.create_balanced_tree(data4, 2);
+    s3.create_balanced_tree(data4, 0, 1);
     assert(s4.is_balanced());
     std::cout << "passed" <<std::endl;
     return 0;
