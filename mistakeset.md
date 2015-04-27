@@ -25,5 +25,7 @@ Daily mistake
 - 4.16
     1. const function must only call const function.
     2. Must check the existance of an object before trying to access it.
+- 4.27
+    1. int mian() // OMG
 Catgoried Mistake
 ---

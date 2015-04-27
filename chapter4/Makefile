@@ -4,10 +4,10 @@ TESTSOURCE=test.cc
 BALANCED=balanced_tree.cpp
 SORTARRAY=sorted_array_to_balanced_tree.cc
 TREE2LIST=list_tree.cc
-OUTTS=test
-OUTBL=balanced
-OUTSA=sorted_array
-OUTTL=tree2list
+OUTTS=test.exe
+OUTBL=balanced.exe
+OUTSA=sorted_array.exe
+OUTTL=tree2list.exe
 CC=g++
 all: t2l
 
@@ -20,4 +20,4 @@ sortarray:  sorted_array_to_balanced_tree.cc
 t2l:  list_tree.cc
 	${CC} ${TREE2LIST} ${SOURCE} ${CFLAG} ${OUTTL}
 clean:
-	rm -r *.exe *.dSYM core*
+	rm -r *.exe *.dSYM core* *~
