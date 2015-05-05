@@ -27,5 +27,8 @@ Daily mistake
     2. Must check the existance of an object before trying to access it.
 - 4.27
     1. int mian() // OMG
+- 5.5
+    1. Assert un-initialized pointer not equal to nullptr. However, uninitialized pointer is undefined.
+    2. Erased none exist iterator
 Catgoried Mistake
 ---

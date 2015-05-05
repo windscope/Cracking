@@ -39,6 +39,7 @@ public:
             _value = '\n';
             delete _kids_dict;
         }
+
         // getters
         const char value() const { return _value; }
         const TrieNode* parent() const { return _parent; }
@@ -47,6 +48,7 @@ public:
             auto it = _kids_dict->find(key);
             return it->second;
         }
+
         // mutable
         TrieNode* mutable_parent() {return _parent; }
         KidsDict* mutable_kids_dict() { return _kids_dict; }
@@ -54,10 +56,12 @@ public:
             auto it = _kids_dict->find(key);
             return it->second;
         }
+
         // setters
         void set_parent(TrieNode* parent) { _parent = parent; }
         void set_value(char value) { _value = value; }
         void set_kids_dict(KidsDict* kids_dict) { _kids_dict = kids_dict; }
+
         // convenient functions to manipulate object
         bool add_kid(TrieNode* node) {
             bool success = false;
