@@ -4,10 +4,13 @@
 // Author: windscope <windscope@gmail.com>
 // All rights reserved. 04/27/2015
 
+#ifndef CRACK_TRIE_H
+#define CRACK_TRIE_H
+
 #include <vector>
 #include <set>
 #include <string>
-#include <unordered_map>
+#include <map>
 
 namespace crack {
 class Trie {
@@ -17,7 +20,7 @@ public:
     typedef std::vector<TrieNode*> TrieNodes;
     typedef std::vector<TrieNode*>::const_iterator CNodeIterator;
     typedef std::vector<TrieNode*>::iterator NodeIterator;
-    typedef std::unordered_map<char, TrieNode*> KidsDict;
+    typedef std::map<char, TrieNode*> KidsDict;
     // Type of node, root is the root node, char is the value node, END represent a word ending.
     public:
     enum Type {
@@ -36,12 +39,13 @@ public:
 
         virtual ~TrieNode() {
             _parent = nullptr;
-            _value = '\n';
+            _value = '\0';
             delete _kids_dict;
         }
 
         // getters
         const char value() const { return _value; }
+        const Type type() const { return _type; }
         const TrieNode* parent() const { return _parent; }
         const KidsDict* kids_dict() const { return _kids_dict; }
         const TrieNode* kid(const char key) const {
@@ -99,3 +103,5 @@ private:
 
 };
 } // namespace crack
+
+#endif // CRACK_TRIE_H

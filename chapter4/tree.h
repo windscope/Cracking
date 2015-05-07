@@ -1,7 +1,7 @@
 // Author windscope <windcope@gmail.com>
 
-#ifndef _TREE_H_
-#define _TREE_H_
+#ifndef CRACK_TREE_H
+#define CRACK_TREE_H
 
 #include <vector>
 namespace crack {
@@ -45,4 +45,4 @@ private:
 
 } // namespace crack
 
-#endif // _TREE_H_
+#endif // CRACK_TREE_H

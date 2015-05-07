@@ -3,11 +3,52 @@
 #include "trie.h"
 
 #include <cassert>
+#include <iostream>
+#include <queue>
 #include <set>
 #include <string>
-#include <iostream>
+#include <unordered_map>
+
 
 namespace crack {
+
+namespace {
+void dfs(std::set<Trie::TrieNode*>* node_set, Trie::TrieNode* node) {
+    if (node != nullptr) {
+        // This node set is actually unnecessary for node test, since it is a tree not a DAG
+        if (node_set->find(node) == node_set->end()) {
+            node_set->insert(node);
+            std::cout << node->value();
+            for (auto it = node->kids_dict()->begin(); it != node->kids_dict()->end(); ++it) {
+                dfs(node_set, it->second);
+            }
+        }
+    }
+}
+
+void bfs(Trie::TrieNode* node) {
+    if (node != nullptr) {
+        std::queue<Trie::TrieNode*> node_queue;
+        std::set<Trie::TrieNode*> node_set;
+        std::cout << node->value();
+        node_queue.push(node);
+        while (!node_queue.empty()) {
+            Trie::TrieNode* current_node = node_queue.front();
+            node_queue.pop();
+            for (auto it = current_node->kids_dict()->begin();
+                        it != current_node->kids_dict()->end(); ++it) {
+                if (node_set.find(it->second) == node_set.end()) {
+                node_queue.push(it->second);
+                node_set.insert(it->second);
+                std::cout << it->first;
+                }
+            }
+        }
+    }
+}
+
+} // anonymous namespace
+
 Trie::Trie(const std::vector<std::string>& words) {
     // root neeed tobe nullptr
     _root = new TrieNode(TrieNode::ROOT);
@@ -57,32 +98,19 @@ void Trie::free_nodes() {
 
 void Trie::free_nodes(TrieNode* node) {
     if (node != nullptr) {
-        for(auto it = node->mutable_kids_dict()->begin(); it != node->mutable_kids_dict()->end();
+        for (auto it = node->mutable_kids_dict()->begin(); it != node->mutable_kids_dict()->end();
                     ++it) {
             free_nodes(it->second);
         }
         node->mutable_kids_dict()->clear();
-        std::cout << "now freeing " << node->value() << std::endl;
+        // For debugging
+        // std::cout << "now freeing " << node->value() << std::endl;
         delete node;
     }
 }
 
-namespace {
-void dfs(std::set<Trie::TrieNode*>* node_set, Trie::TrieNode* node) {
-    if (node != nullptr) {
-        // This node set is actually unnecessary for node test, since it is a tree not a DAG
-        if (node_set->find(node) == node_set->end()) {
-            node_set->insert(node);
-            std::cout << node->value();
-            for (auto it = node->kids_dict()->begin(); it != node->kids_dict()->end(); ++it) {
-                dfs(node_set, it->second);
-            }
-        }
-    }
-}
-}// anonymous namespace
-
 void Trie::bfs_traversal() {
+    bfs(_root);
 }
 
 void Trie::dfs_traversal() {
@@ -91,6 +119,32 @@ void Trie::dfs_traversal() {
 }
 
 void Trie::print_words() {
+    std::unordered_map<TrieNode*, std::string> str_dict;
+    std::queue<TrieNode*> node_queue;
+    node_queue.push(_root);
+    std::string init_str;
+    str_dict[_root] = init_str;
+    while (!node_queue.empty()) {
+        TrieNode* current_node = node_queue.front();
+        node_queue.pop();
+        if (current_node->type() == TrieNode::END) {
+            // check the node is stored in the dict
+            assert(str_dict.find(current_node) != str_dict.end());
+            std::cout << str_dict[current_node] << std::endl;
+        }
+        for (auto it = current_node->kids_dict()->begin();
+                it != current_node->kids_dict()->end(); ++it) {
+            if (str_dict.find(it->second) == str_dict.end()) {
+                std::string it_str = str_dict[current_node];
+                it_str.push_back(it->second->value());
+                str_dict[it->second] = it_str;
+            }
+            node_queue.push(it->second);
+        }
+        // after handling all the kids for the current node, we can get rid of its string from dict
+        str_dict.erase(current_node);
+    }
+
 
 }
 
