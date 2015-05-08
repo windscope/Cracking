@@ -12,8 +12,8 @@ public:
     public:
         Node() : _value(0), _left(nullptr), _right(nullptr) {}
         explicit Node(int value) : _value(value), _left(nullptr), _right(nullptr) {}
-        const Node* left() const { return _right; }
-        const Node* right() const { return _left; }
+        const Node* left() const { return _left; }
+        const Node* right() const { return _right; }
         Node* mutable_left() { return _left; }
         Node* mutable_right() { return _right; }
         const int value() const { return _value; }
@@ -32,6 +32,7 @@ public:
     Tree() : _root(nullptr) {}
     ~Tree();
     const Node* root() const { return _root;}
+    Node* mutable_root() { return _root; }
     void add_node(int value);
     void pre_order(const Node* leaf) const;
     void in_order(const Node* leaf) const;
