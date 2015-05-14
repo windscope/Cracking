@@ -33,10 +33,40 @@ public:
     else
         return min_array_size;
     }
+
+    int minSubArrayLen2(int s, vector<int>& nums) {
+        int min_array_size = 0;
+        int sum = 0;
+        int front = 0;
+        int back = 0;
+        for (size_t i = 0; i < nums.size(); ++i) {
+            // one single int is greater than
+            if (nums[i] >= s) {
+                return 1;
+            } else if (sum + nums[i] <= s) {
+                sum += nums[i];
+                front = i;
+                ++min_array_size;
+            } else {
+                sum += nums[i];
+                front = i;
+                while (sum - nums[back] >= s && front - back >= 0) {
+                    sum -= nums[back];
+                    back++;
+                    min_array_size = min(front - back + 1, min_array_size);
+                }
+            }
+        }
+    // if at the end, sum is less than s, return 0
+        if(sum < s)
+            return 0;
+        else
+            return min_array_size;
+    }
 };
 
 int main(void) {
     Solution s;
     std::vector<int> data = {2,3,1,1,1,1,1};
-    cout << s.minSubArrayLen(5, data) << endl;
+    cout << s.minSubArrayLen2(5, data) << endl;
 }
