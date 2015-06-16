@@ -1,3 +1,5 @@
+// Author: windscope <windscope@gmail.com>
+// Given a array and a int s , find the minimum sub array that satisfy the sum of the subarray is greater than or equal to the given s. 
 #include <iostream>
 #include <cassert>
 #include <vector>
