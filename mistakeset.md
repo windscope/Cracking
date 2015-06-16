@@ -30,5 +30,8 @@ Daily mistake
 - 5.5
     1. Assert un-initialized pointer not equal to nullptr. However, uninitialized pointer is undefined.
     2. Erased none exist iterator
+- 5.14
+    1. Must pay attention to the corner case.
+    2. Must run some examples in mind
 Catgoried Mistake
 ---
