@@ -33,7 +33,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
         if (i > 0 && nums[i] == nums[i-1]) {
             continue;
         }
-        two_pointer_algorithm(nums[i], nums.begin() + i + 1, nums.end() - 1, &result, nums);
+        two_pointer_algorithm(nums[i], nums.begin() + i + 1, nums.end() - 1, &result);
     }
     return result;
 }
@@ -55,8 +55,7 @@ private:
 void two_pointer_algorithm(int value,
         const_vint begin,
         const_vint end,
-        vector<vector<int>>* result,
-        const vector<int>& data) {
+        vector<vector<int>>* result) {
     while (begin < end) {
         if (value + *begin + *end == 0) {
             result->push_back({value, *begin, *end});
