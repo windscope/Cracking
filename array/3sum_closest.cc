@@ -31,9 +31,7 @@ int threeSumClosest(vector<int>& nums, int target) {
         return ret;
     }
     for (int i = 0; i < nums.size() - 2; ++i) {
-        cout << "i is" << i << endl;
         if (nums[i] > 0 && nums[i] >= target) {
-            cout << "here in 1" << endl;
             return ret;
         }
         if (i > 0 && nums[i-1] == nums[i]) {
@@ -41,13 +39,8 @@ int threeSumClosest(vector<int>& nums, int target) {
         }
         two_pointer_algorithm(target, nums[i], nums.begin() + i + 1, nums.end() - 1, &ret, &diff);
         if (diff == 0) {
-            cout << "here in 2" << endl;
             return ret;
         }
-    }
-    cout << "diff is " << diff << endl;
-    cout << "ret is " << ret << endl;
-    // unreachable
     return ret;
 }
 
