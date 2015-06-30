@@ -1,4 +1,4 @@
-// Sourece https://leetcode.com/problems/4sum
+// Sourece https://leetcode.com/problems/foursum
 
 /* Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d =
  * target? Find all unique quadruplets in the array which gives the sum of target.
@@ -64,7 +64,7 @@ void two_sum(
         const int target,
         vector<vector<int>>* result) {
     while(begin < end) {
-        if (*begin > target) {
+        if (*begin > 0 && *begin > target) {
             return;
         }
         if (*begin + *end == target) {
