@@ -5,10 +5,10 @@
 // For "bbbbb" the longest substring is "b", with the length of 1.
 
 // Score: 40 ms
-// Lession learnt: too simple
+// Lession learnt: DP is just cache the result
 
 // Alogrithm:
-//     2 pointers, 2 pointers
+//     2 pointers, hash map, DP
 
 #include <iostream>
 #include <cassert>
