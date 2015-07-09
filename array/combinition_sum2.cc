@@ -4,7 +4,7 @@
 // lessons to learn:
 //          1. remember to remove duplicated numbers in the data
 //          2. Remember the difference between continue and break
-// Score: 12ms
+// Score: 20ms
 
 #include <vector>
 #include <algorithm>
