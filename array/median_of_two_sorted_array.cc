@@ -12,13 +12,15 @@ public:
     typedef vector<int>::const_iterator cvint_t;
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        // max sure small size's array stay first
+        if (nums1.size() > nums2.size()) {
+            findMedianSortedArrays(nums2, nums1);
+        }
         pair<int, int> compare_pair;
         if (nums1.empty()) {
             return find_median_sorted_array(nums2.begin(), nums2.end(), &compare_pair);
         }
-        if (nums2.empty()) {
-            return find_median_sorted_array(nums2.begin(), nums2.end(), &compare_pair);
-        }
+        if (nums1.empty())
         vector<int> shift(4, 0);
         double median1 = find_median_sorted_array(nums1.begin() + shift[0], nums1.end() - shift[1]);
         double median2 = find_median_sorted_array(nums2.begin() + shift[2], nums2.end() - shift[3]);
@@ -26,7 +28,9 @@ public:
     }
 
     double find_median_sorted_array(cvint_t begin, cvint_t end, pair<int, int>* compare_pair) {
-
+        if (begin == end) {
+            return 0;
+        }
         int dist = distance(begin, end);
         int index = dist / 2;
         double median = 0;
