@@ -53,9 +53,13 @@ public:
         vector<int> topology_sorted_nodes;
         topology_sorted_nodes.reserve(numCourses);
         while(!top_nodes.empty()) {
+            // get the first node of the top nodes, erase it from the hashset,
+            // and push it to the top sorted list
             int n = *top_nodes.begin();
             top_nodes.erase(top_nodes.begin());
             topology_sorted_nodes.push_back(n);
+            // unlink the edges between this node and its followers, if the following node
+            // has no parent node, push it to top node set
             for (auto i : graph_map[n].second) {
                 graph_map[n].second.erase(i);
                 graph_map[i].first.erase(n);
@@ -64,6 +68,7 @@ public:
                 }
             }
         }
+        // get the top node again, it should equal to the numcourses if exist a top order
         make_top_nodes(graph_map, top_nodes);
         if (top_nodes.size() == numCourses) {
             return topology_sorted_nodes;
