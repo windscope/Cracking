@@ -27,14 +27,19 @@
 
 using namespace std;
 
+// An O(1) memory solution is possible: use the grid itself as the bitmap, change all traversed
+// point to 0 after first pass
+
 class Solution {
 public:
     using Grid = vector<vector<char>>;
     int numIslands(Grid& grid) {
         int count = 0;
+        // corner case
         if (grid.size() == 0 || grid.begin()->size() ==0) {
             return count;
         }
+        // get the dimenssion of the grid
         int m = grid.size();
         int n = grid[m - 1].size();
         vector<vector<bool>> is_visited;
