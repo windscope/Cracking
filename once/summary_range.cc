@@ -28,6 +28,7 @@ public:
                 ret.push_back(s);
             }
         }
+        // remeber the one pointer algorithm may always require a last insert if not updated
         s = get_str(nums, first, nums.size() - 1, sout);
         ret.push_back(s);
         return ret;

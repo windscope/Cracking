@@ -22,8 +22,11 @@
 #include <iostream>
 #include <vector>
 
+// next time rewrite this two question
+
 using namespace std;
 
+// back tracking is dfs with a condition to determine the result
 // without duplicates
 class Solution1 {
 public:
@@ -44,7 +47,7 @@ public:
     void dfs_traverse(const int index, const vector<int>& nums, const vector<int>& data, Matrix& result) {
         int i = index;
         vector<int> data_copy = data;
-        while (i + 1< nums.size()) {
+        while (i + 1 < nums.size()) {
             i += 1;
             data_copy.push_back(nums[i]);
             result.push_back(data_copy);
@@ -69,7 +72,7 @@ public:
             vector<int> temp = {nums[i]};
             result.push_back(temp);
             dfs_traverse(i, nums, temp, result);
-            // a very important pattern, remove all duplicate from start
+            // a very important pattern, remove all duplicate after start
             while (i + 1 < nums.size() && nums[i] == nums[i + 1]) {
                 ++i;
             }

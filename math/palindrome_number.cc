@@ -36,6 +36,7 @@ public:
     }
 
     bool isPalindrome2(const int x) {
+        // 1. x greater than int_max, less than 0 or is divideable by 10, return false
         if (x >= INT_MAX || (x != 0 && x % 10 == 0)) {
             return false;
         }

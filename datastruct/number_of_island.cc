@@ -27,19 +27,14 @@
 
 using namespace std;
 
-// An O(1) memory solution is possible: use the grid itself as the bitmap, change all traversed
-// point to 0 after first pass
-
 class Solution {
 public:
     using Grid = vector<vector<char>>;
     int numIslands(Grid& grid) {
         int count = 0;
-        // corner case
         if (grid.size() == 0 || grid.begin()->size() ==0) {
             return count;
         }
-        // get the dimenssion of the grid
         int m = grid.size();
         int n = grid[m - 1].size();
         vector<vector<bool>> is_visited;
@@ -57,6 +52,7 @@ public:
     }
 
     void visit_island(const Grid& grid, const int i, const int j, vector<vector<bool>>& is_visited, const int m, const int n) {
+        // i j are within boundary and check correct and not visited, proceed
         if (i >=0 && j >= 0 && i < m && j < n && grid[i][j] == '1' && !is_visited[i][j]) {
             is_visited[i][j] = true;
             visit_island(grid, i - 1, j, is_visited, m, n);
@@ -69,5 +65,12 @@ public:
 };
 
 int main() {
+    Solution s;
+    Solution::Grid test_data = {
+        {'1', '0', '1'},
+        {'0', '1', '1'},
+        {'1', '0', '0'}
+    }
+    assert(s.numIslands(test_data));
     return 0;
 }

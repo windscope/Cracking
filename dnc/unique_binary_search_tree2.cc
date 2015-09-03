@@ -16,6 +16,8 @@
 
 using namespace std;
 
+// next time rewrite
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -39,50 +41,31 @@ public:
         return divider(1, n);
     }
 
-    vector<TreeNode*> divider(const int i, const int j) {
-        if (i > j) {
+    vector<TreeNode*> divider(const int starter, const int ender) {
+        if (starter > ender) {
             return {nullptr};
+        } else if (starter == ender) {
+            return {new TreeNode(starter)};
         }
-        if (i == j) {
-            return {node_creater(i, j)};
-        } else if (i + 1 == j) {
-            return {node_creater(i, j), node_creater(j, i)};
-        } else {
-            vector<TreeNode*> ret_nodes;
-            for (int x = i - 1 ; x + 1 <= j; ++x) {
-                vector<TreeNode*> left_nodes = divider(i, x);
-                vector<TreeNode*> right_nodes = divider(x + 2, j);
-                vector <TreeNode*> level_nodes = combiner(left_nodes, x + 1, right_nodes);
-                ret_nodes.reserve(ret_nodes.size() + level_nodes.size());
-                ret_nodes.insert(ret_nodes.end(), level_nodes.begin(), level_nodes.end());
-            }
-            return ret_nodes;
-        }
-    }
-
-    TreeNode* node_creater(const int parent_index, const int child_index) {
-        if (parent_index == child_index) {
-            return new TreeNode(parent_index);
-        }
-        TreeNode* parent_node = new TreeNode(parent_index);
-        TreeNode* child_node = new TreeNode(child_index);
-        if (parent_index > child_index) {
-            parent_node->left = child_node;
-        } else {
-            parent_node->right = child_node;
-        }
-        return parent_node;
-    }
-
-    vector<TreeNode*> combiner(vector<TreeNode*>& left_nodes, const int i, vector<TreeNode*>& right_nodes) {
         vector<TreeNode*> ret;
-        ret.reserve(right_nodes.size() * left_nodes.size());
-        for (auto left_node : left_nodes) {
-            for (auto right_node : right_nodes) {
-                TreeNode* this_node = new TreeNode(i);
-                this_node->left = left_node;
-                this_node->right = right_node;
-                ret.push_back(this_node);
+        for (int i = starter - 1; i < ender; ++i) {
+            vector<TreeNode*> temp_left = divider(starter, i);
+            vector<TreeNode*> temp_right = divider(i + 2, ender);
+            vector<TreeNode*> temp_result = combiner(temp_left, i + 1, temp_right);
+            ret.insert(ret.end(), temp_result.begin(), temp_result.end());
+        }
+        return ret;
+    }
+
+    vector<TreeNode*> combiner(const vector<TreeNode*>& left_nodes, const int parent_index, const vector<TreeNode*>& right_nodes) {
+        vector<TreeNode*> ret;
+        ret.reserve(left_nodes.size() * right_nodes.size());
+        for (const auto& left_node: left_nodes) {
+            for (const auto& right_node : right_nodes) {
+                TreeNode* new_node = new TreeNode(parent_index);
+                new_node->left = left_node;
+                new_node->right = right_node;
+                ret.push_back(new_node);
             }
         }
         return ret;

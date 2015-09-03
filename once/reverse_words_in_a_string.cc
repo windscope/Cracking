@@ -8,7 +8,8 @@
 
 // Update (2015-02-12):
 // For C programmers: Try to solve it in-place in O(1) space.
-
+// 9/2/2015: 2 mistakes: 1. remove the emptystring is wrong, should remeber the pattern, 2. reverse
+//           takes the begin, and end, so the end should be the un-wanted iterator
 #include <string>
 #include <iostream>
 

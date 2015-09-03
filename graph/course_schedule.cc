@@ -32,17 +32,23 @@ struct GraphNode {
     set<GraphNode*> next_nodes;
     GraphNode(int x) : val(x) {};
 };
-
+// This algorithm is build the graph and then use dfs traverse to detect cycles
+// This algorithm is actually not efficient: since I construct the graph not as a bi-diraction graph
+// but a forest
+// next time review rewrite this solution
 class Solution {
 public:
     bool canFinish(int numCourses, const vector<pair<int, int>>& prerequisites) {
+        // node lookup map
         unordered_map<int, GraphNode*> node_map;
         for (int i = 0; i < numCourses; ++i) {
             node_map.insert(make_pair(i, new GraphNode(i)));
         }
+        // build the graph
         for (auto prerequisite : prerequisites) {
             node_map[prerequisite.second]->next_nodes.insert(node_map[prerequisite.first]);
         }
+        // from every node, try to find whether it is a cycle
         for (auto node : node_map) {
             unordered_set<GraphNode*> node_set;
             if (!isDAG(node.second, &node_set)) {
@@ -65,6 +71,8 @@ public:
                 }
             }
         } else {
+            // insert the found out value in node check map, to prevent duplicated check
+            // aproximately dp solution
             node_check_map[node->val] = false;
             return false;
         }

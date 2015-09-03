@@ -27,7 +27,15 @@
 #include <vector>
 
 using namespace std;
-
+// topology ordering question
+// For this question, I use a bfs traverse to find the topology ordering question
+// algorithm is list as follow:
+// 1. Use unordered_map to build the graph(since val of the node is unique and it is from 1 to n)
+// 2. first find all the top node(has no incoming edges)
+// 3. If there is no top nodes, return empty vector
+// 4. For each incoming edges, try to bfs and then get a top sort order nodes
+// 5. re-find the top nodes, after bfs, the top nodes size should equal to n, in that case, we have
+//    no cycle
 class Solution {
 public:
     typedef pair<set<int>, set<int>> Node;
