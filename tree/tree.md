@@ -1,5 +1,7 @@
 # Summary of Binary tree data structure
 
+
+
 ## 1. Basic Concepts
 
 - leaf
@@ -25,6 +27,8 @@
 - A complete binary tree
   
   - every level, except(not required) the last is completely filled
+
+
 
 ## 2. Traversing the binary tree
 
@@ -148,8 +152,8 @@
         			prev = cur->left;
                 	while(prev->right != nullptr && prev->right != cur) {
         				prev = prev->right;
-      			}
-                	if (prev->right == nullptr) {
+      				}
+              	if (prev->right == nullptr) {
         				prev->right = cur;
       	            cur = cur->left;
       			} else {
@@ -265,3 +269,9 @@
   ```
   
   ​
+  
+  ## 3 problem sets
+  
+  1. Symmetric tree:
+     - Lesson learnt: can pass two nodes that are in the same layer to overcome that two disjoint nodes from different parents cannot be access via the same 
+  2. ​

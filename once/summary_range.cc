@@ -19,7 +19,6 @@ public:
         vector<string> ret;
         ostringstream sout;
         int first = 0;
-        int last = 0;
         string s;
         for (int i = 0; i < nums.size(); ++i) {
             if (i != 0 && nums[i - 1] + 1 < nums[i]) {

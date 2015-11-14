@@ -17,8 +17,7 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-class Comparer {
-public:
+object Comparer {
     bool operator() (const ListNode* node1, const ListNode* node2) {
         return node1->val > node2->val;
     }
